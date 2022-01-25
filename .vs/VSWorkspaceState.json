@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\AppendixA"
+    "\\AppendixB",
+    "\\AppendixB\\AppendixB"
   ],
-  "SelectedNode": "\\AppendixA\\05_insertSuperHeroes.sql",
+  "SelectedNode": "\\AppendixB\\AppendixB\\AppendixB.csproj",
   "PreviewInSolutionExplorer": false
 }

@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\code\\2022\\noroff\\week1\\dotnet\\assignments\\Assignment2DataaccessSQL\\AppendixB\\AppendixB\\AppendixB.csproj": {}
+    "C:\\Users\\jabali\\Desktop\\Assignment2DataaccessSQL\\AppendixB\\AppendixB\\AppendixB.csproj": {}
   },
   "projects": {
-    "E:\\code\\2022\\noroff\\week1\\dotnet\\assignments\\Assignment2DataaccessSQL\\AppendixB\\AppendixB\\AppendixB.csproj": {
+    "C:\\Users\\jabali\\Desktop\\Assignment2DataaccessSQL\\AppendixB\\AppendixB\\AppendixB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\code\\2022\\noroff\\week1\\dotnet\\assignments\\Assignment2DataaccessSQL\\AppendixB\\AppendixB\\AppendixB.csproj",
+        "projectUniqueName": "C:\\Users\\jabali\\Desktop\\Assignment2DataaccessSQL\\AppendixB\\AppendixB\\AppendixB.csproj",
         "projectName": "AppendixB",
-        "projectPath": "E:\\code\\2022\\noroff\\week1\\dotnet\\assignments\\Assignment2DataaccessSQL\\AppendixB\\AppendixB\\AppendixB.csproj",
-        "packagesPath": "C:\\Users\\emili\\.nuget\\packages\\",
-        "outputPath": "E:\\code\\2022\\noroff\\week1\\dotnet\\assignments\\Assignment2DataaccessSQL\\AppendixB\\AppendixB\\obj\\",
+        "projectPath": "C:\\Users\\jabali\\Desktop\\Assignment2DataaccessSQL\\AppendixB\\AppendixB\\AppendixB.csproj",
+        "packagesPath": "C:\\Users\\jabali\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jabali\\Desktop\\Assignment2DataaccessSQL\\AppendixB\\AppendixB\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\emili\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jabali\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +43,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
