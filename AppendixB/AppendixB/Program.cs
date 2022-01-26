@@ -15,12 +15,13 @@ namespace AppendixB
             SpecificCustomerById(repository);
             SpecificCustomerByName(repository);
             ReadLimitAndOffset(repository);
-           // AddNewCustomer(repository);
-           // UpdateCustomer(repository);
+            AddNewCustomer(repository);
+            UpdateCustomer(repository);
             ReadCustomersByCountry(repository);
         }
         public static void ReadAllCustomers(ICustomerRepository repository)
         {
+            Console.WriteLine(" ---------------------- Display All Customers ------------------------------------------- \n");
             PrintCustomer(repository.GetAllCustomers());
             Console.WriteLine(" ------------------------------------------------------------------------------------------\n");
           
@@ -33,7 +34,7 @@ namespace AppendixB
         }
         public static void SpecificCustomerByName(ICustomerRepository repository)
         {
-            Console.WriteLine(" ---------------------- Read Specific Customer by Name ---------------------------------- \n");
+            Console.WriteLine(" ---------------------- Read Specific Customer by Name ----------------------------------- \n");
             PrintCustomer(repository.GetCustomerByName("Marc"));
             Console.WriteLine();
         }
@@ -43,55 +44,55 @@ namespace AppendixB
             PrintCustomer(repository.GetAllCustomersWithLimitAndOffset(3, 5));
             Console.WriteLine();
         }
-        //public static void AddNewCustomer(ICustomerRepository repository)
-        //{
-        //    Customer customer = new Customer()
-        //    {
-        //        FirstName = "Jaber",
-        //        LastName = "Ali",
-        //        Country = "Sweden",
-        //        PostalCode = "82880",
-        //        Phone = "+46782584588",
-        //        Email = "Ali@gmail.com"
-        //    };
+        public static void AddNewCustomer(ICustomerRepository repository)
+        {
+            Customer customer = new Customer()
+            {
+                FirstName = "Jaber",
+                LastName = "Ali",
+                Country = "Sweden",
+                PostalCode = "82880",
+                Phone = "+46782584588",
+                Email = "Ali@gmail.com"
+            };
 
-        //    if (repository.CreateNewCustomer(customer))
-        //    {
-        //        Console.WriteLine(" -------------------- New Customer Added -------------------------------- \n");
-        //        Console.WriteLine("Success");
-        //        Console.WriteLine();
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Failed");
-        //    }
+            if (repository.CreateNewCustomer(customer))
+            {
+                Console.WriteLine(" -------------------- New Customer Added --------------------------------------------- \n");
+                Console.WriteLine("Success");
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("Failed");
+            }
 
-        //}
-        //public static void UpdateCustomer(ICustomerRepository repository)
-        //{
-        //    Customer customer = new Customer()
-        //    {
-        //        CustomerId = 63,
-        //        FirstName = "Emilio",
-        //        LastName = "Em",
-        //        Country = "Norway",
-        //        PostalCode = "35248",
-        //        Phone = "+4670524562",
-        //        Email = "Emilio@gmail.com"
-        //    };
+        }
+        public static void UpdateCustomer(ICustomerRepository repository)
+        {
+            Customer customer = new Customer()
+            {
+                CustomerId = 63,
+                FirstName = "Emilio",
+                LastName = "Em",
+                Country = "Norway",
+                PostalCode = "35248",
+                Phone = "+4670524562",
+                Email = "Emilio@gmail.com"
+            };
 
-        //    if (repository.UpdateCustomer(customer))
-        //    {
-        //        Console.WriteLine(" -------------------- A Customer has been Updated -------------------------------- \n");
-        //        Console.WriteLine("Customer Updated");
-        //        Console.WriteLine();
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Failed");
-        //    }
+            if (repository.UpdateCustomer(customer))
+            {
+                Console.WriteLine(" -------------------- A Customer has been Updated -------------------------------------- \n");
+                Console.WriteLine("Customer Updated");
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("Failed");
+            }
 
-        //}
+        }
         public static void ReadCustomersByCountry(ICustomerRepository repository)
         {
             List<CustomerCountry> numbers = repository.GetCustomersByCountry();
