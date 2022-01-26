@@ -18,6 +18,7 @@ namespace AppendixB
             AddNewCustomer(repository);
             UpdateCustomer(repository);
             ReadCustomersByCountry(repository);
+            ReadCustomersByInvoice(repository);
         }
         public static void ReadAllCustomers(ICustomerRepository repository)
         {
@@ -144,13 +145,29 @@ namespace AppendixB
                     var order = string.Format("|{0,5} |{1,5} | ", customerObj.CountryName, customerObj.CustomerId);
                     Console.WriteLine(order);
                 }
+            }catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public static void ReadCustomersByInvoice(ICustomerRepository repository)
+        {
+            try
+            {
+                List<CustomerSpender> numbers = repository.GetCustomersBySpenders();
+                Console.WriteLine(" -------------------- Customers Order By Biggest Spender from High To Low ---------------------------- \n");
+                foreach (CustomerSpender customerObj in numbers)
+                {
+                    var order = string.Format("|{0,5} |{1,5} |  |{2,5} | ", customerObj.TotalSpender, customerObj.FirstName, customerObj.LastName);
+                    Console.WriteLine(order);
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
         }
-            public static void PrintCustomer(ICollection customers)
+        public static void PrintCustomer(ICollection customers)
         {
 
             foreach (Customer customer in customers)

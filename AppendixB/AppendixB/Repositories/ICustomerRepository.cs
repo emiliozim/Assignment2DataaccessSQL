@@ -16,5 +16,6 @@ namespace AppendixB.Repositories
         public bool CreateNewCustomer(Customer customer);
         public bool UpdateCustomer(Customer customer);
         public List<CustomerCountry> GetCustomersByCountry();
+        public List<CustomerSpender> GetCustomersBySpenders();
     }
 }

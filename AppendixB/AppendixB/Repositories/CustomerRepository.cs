@@ -222,6 +222,48 @@ namespace AppendixB.Repositories
                 }
             return custList;
         }
+        public List<CustomerSpender> GetCustomersBySpenders()
+        {
+
+            List<CustomerSpender> custList = new List<CustomerSpender>();
+
+            string sql = "SELECT FirstName," +
+                " LastName," +
+                "SUM(Total) AS Total" +
+                " From Customer c" +
+                " JOIN Invoice i ON c.CustomerId = i.CustomerId" +
+                " GROUP BY c.FirstName, c.LastName" +
+                " ORDER BY Total DESC";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
+                {
+                    conn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+
+                            while (reader.Read())
+                            {
+                                CustomerSpender customerSpender = new CustomerSpender();
+                                customerSpender.FirstName = reader.GetString(0);
+                                customerSpender.LastName = reader.GetString(1);
+                                customerSpender.TotalSpender = reader.GetDecimal(2);
+                                custList.Add(customerSpender);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return custList;
+        }
 
     }
 
