@@ -198,7 +198,11 @@ namespace AppendixB.Repositories
            
             List<CustomerCountry> custList = new List<CustomerCountry>();
 
-            string sql = "SELECT COUNT(Country), Country FROM Customer GROUP BY Country ORDER BY COUNT(Country) DESC";
+            string sql = "SELECT COUNT(CustomerId) AS TotalNumber," +
+                " Country" +
+                " FROM Customer" +
+                " GROUP BY Country" +
+                " ORDER BY TotalNumber DESC";
 
                 using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
                 {
