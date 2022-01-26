@@ -13,5 +13,8 @@ namespace AppendixB.Repositories
         public Customer GetCustomerById(int id);
         public List<Customer> GetCustomerByName(string name);
         public List<Customer> GetAllCustomersWithLimitAndOffset(int limit, int offset);
+        public bool CreateNewCustomer(Customer customer);
+        public bool UpdateCustomer(Customer customer);
+        public List<CustomerCountry> GetCustomersByCountry();
     }
 }

@@ -2,6 +2,7 @@
 using AppendixB.Repositories;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace AppendixB
 {
@@ -14,6 +15,9 @@ namespace AppendixB
             SpecificCustomerById(repository);
             SpecificCustomerByName(repository);
             ReadLimitAndOffset(repository);
+           // AddNewCustomer(repository);
+           // UpdateCustomer(repository);
+            ReadCustomersByCountry(repository);
         }
         public static void ReadAllCustomers(ICustomerRepository repository)
         {
@@ -37,11 +41,68 @@ namespace AppendixB
         {
             Console.WriteLine(" -------------------- Gets Customers with Limit And Offset -------------------------------- \n");
             PrintCustomer(repository.GetAllCustomersWithLimitAndOffset(3, 5));
+            Console.WriteLine();
         }
+        //public static void AddNewCustomer(ICustomerRepository repository)
+        //{
+        //    Customer customer = new Customer()
+        //    {
+        //        FirstName = "Jaber",
+        //        LastName = "Ali",
+        //        Country = "Sweden",
+        //        PostalCode = "82880",
+        //        Phone = "+46782584588",
+        //        Email = "Ali@gmail.com"
+        //    };
 
+        //    if (repository.CreateNewCustomer(customer))
+        //    {
+        //        Console.WriteLine(" -------------------- New Customer Added -------------------------------- \n");
+        //        Console.WriteLine("Success");
+        //        Console.WriteLine();
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Failed");
+        //    }
 
+        //}
+        //public static void UpdateCustomer(ICustomerRepository repository)
+        //{
+        //    Customer customer = new Customer()
+        //    {
+        //        CustomerId = 63,
+        //        FirstName = "Emilio",
+        //        LastName = "Em",
+        //        Country = "Norway",
+        //        PostalCode = "35248",
+        //        Phone = "+4670524562",
+        //        Email = "Emilio@gmail.com"
+        //    };
 
-        public static void PrintCustomer(ICollection customers)
+        //    if (repository.UpdateCustomer(customer))
+        //    {
+        //        Console.WriteLine(" -------------------- A Customer has been Updated -------------------------------- \n");
+        //        Console.WriteLine("Customer Updated");
+        //        Console.WriteLine();
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Failed");
+        //    }
+
+        //}
+        public static void ReadCustomersByCountry(ICustomerRepository repository)
+        {
+            List<CustomerCountry> numbers = repository.GetCustomersByCountry();
+            Console.WriteLine(" -------------------- Customers Order By Country from High To Low ---------------------------- \n");
+            foreach (CustomerCountry customerObj in numbers)
+            {
+                var order = string.Format("|{0,5} |{1,5} | ", customerObj.CountryName, customerObj.CustomerId);
+                Console.WriteLine(order);
+            }
+        }
+            public static void PrintCustomer(ICollection customers)
         {
 
             foreach (Customer customer in customers)

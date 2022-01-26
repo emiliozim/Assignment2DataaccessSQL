@@ -175,5 +175,103 @@ namespace AppendixB.Repositories
             return custtList;
         }
 
+        public bool CreateNewCustomer(Customer customer)
+        {
+            bool success = false;
+            
+            string sql = "INSERT INTO Customer(FirstName,LastName,Country,PostalCode,Phone,Email) " + "VALUES(@FirstName,@LastName,@Country,@PostalCode,@Phone,@Email)";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@FirstName", customer.FirstName);
+                        cmd.Parameters.AddWithValue("@LastName", customer.LastName);
+                        cmd.Parameters.AddWithValue("@Country", customer.Country);
+                        cmd.Parameters.AddWithValue("@PostalCode", customer.PostalCode);
+                        cmd.Parameters.AddWithValue("@Phone", customer.Phone);
+                        cmd.Parameters.AddWithValue("@Email", customer.Email);
+                        success = cmd.ExecuteNonQuery() > 0 ? true : false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return success;
+        }
+
+        public bool UpdateCustomer(Customer customer)
+        {
+            bool success = false;
+         
+            string sql = "UPDATE Customer SET FirstName = @FirstName, LastName = @LastName, Country = @Country, PostalCode = @PostalCode,Phone = @Phone,Email = @Email WHERE CustomerId = @CustomerId";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@CustomerId", customer.CustomerId);
+                        cmd.Parameters.AddWithValue("@FirstName", customer.FirstName);
+                        cmd.Parameters.AddWithValue("@LastName", customer.LastName);
+                        cmd.Parameters.AddWithValue("@Country", customer.Country);
+                        cmd.Parameters.AddWithValue("@PostalCode", customer.PostalCode);
+                        cmd.Parameters.AddWithValue("@Phone", customer.Phone);
+                        cmd.Parameters.AddWithValue("@Email", customer.Email);
+                        success = cmd.ExecuteNonQuery() > 0 ? true : false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return success;
+        }
+        public List<CustomerCountry> GetCustomersByCountry()
+        {
+           
+            List<CustomerCountry> custList = new List<CustomerCountry>();
+
+            string sql = "SELECT COUNT(Country), Country FROM Customer GROUP BY Country ORDER BY COUNT(Country) DESC";
+            try
+            {
+              
+                using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
+                {
+                    conn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+
+                            while (reader.Read())
+                            {
+                                CustomerCountry customerCountryObj = new CustomerCountry();
+                                customerCountryObj.CustomerId = reader.GetInt32(0);
+                                customerCountryObj.CountryName = reader.GetString(1);
+                                custList.Add(customerCountryObj);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+            return custList;
+        }
+
     }
+
 }
