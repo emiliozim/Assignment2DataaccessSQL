@@ -21,28 +21,55 @@ namespace AppendixB
         }
         public static void ReadAllCustomers(ICustomerRepository repository)
         {
-            Console.WriteLine(" ---------------------- Display All Customers ------------------------------------------- \n");
-            PrintCustomer(repository.GetAllCustomers());
-            Console.WriteLine(" ------------------------------------------------------------------------------------------\n");
+            try
+            {
+                Console.WriteLine(" ---------------------- Display All Customers ------------------------------------------- \n");
+                PrintCustomer(repository.GetAllCustomers());
+                Console.WriteLine(" ------------------------------------------------------------------------------------------\n");
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
           
         }
         public static void SpecificCustomerById(ICustomerRepository repository)
         {
-            Console.WriteLine(" ---------------------- Read Specific Customer by ID ------------------------------------- \n");
-            PrintCustomer(repository.GetCustomerById(2));
-            Console.WriteLine();
-        }
+            try { 
+                Console.WriteLine(" ---------------------- Read Specific Customer by ID ------------------------------------- \n");
+                PrintCustomer(repository.GetCustomerById(2));
+                Console.WriteLine();
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+}
         public static void SpecificCustomerByName(ICustomerRepository repository)
         {
-            Console.WriteLine(" ---------------------- Read Specific Customer by Name ----------------------------------- \n");
-            PrintCustomer(repository.GetCustomerByName("Marc"));
-            Console.WriteLine();
+            try
+            {
+                Console.WriteLine(" ---------------------- Read Specific Customer by Name ----------------------------------- \n");
+                PrintCustomer(repository.GetCustomerByName("Marc"));
+                Console.WriteLine();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         static void ReadLimitAndOffset(ICustomerRepository repository)
         {
-            Console.WriteLine(" -------------------- Gets Customers with Limit And Offset -------------------------------- \n");
-            PrintCustomer(repository.GetAllCustomersWithLimitAndOffset(3, 5));
-            Console.WriteLine();
+            try
+            {
+                Console.WriteLine(" -------------------- Gets Customers with Limit And Offset -------------------------------- \n");
+                PrintCustomer(repository.GetAllCustomersWithLimitAndOffset(3, 5));
+                Console.WriteLine();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         public static void AddNewCustomer(ICustomerRepository repository)
         {
@@ -55,21 +82,28 @@ namespace AppendixB
                 Phone = "+46782584588",
                 Email = "Ali@gmail.com"
             };
-
-            if (repository.CreateNewCustomer(customer))
+            try
             {
-                Console.WriteLine(" -------------------- New Customer Added --------------------------------------------- \n");
-                Console.WriteLine("Success");
-                Console.WriteLine();
+                if (repository.CreateNewCustomer(customer))
+                {
+                    Console.WriteLine(" -------------------- New Customer Added --------------------------------------------- \n");
+                    Console.WriteLine("Success");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine("Failed");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("Failed");
+                Console.WriteLine(ex.Message);
             }
 
         }
         public static void UpdateCustomer(ICustomerRepository repository)
         {
+           
             Customer customer = new Customer()
             {
                 CustomerId = 63,
@@ -80,27 +114,40 @@ namespace AppendixB
                 Phone = "+4670524562",
                 Email = "Emilio@gmail.com"
             };
-
-            if (repository.UpdateCustomer(customer))
+            try
             {
-                Console.WriteLine(" -------------------- A Customer has been Updated -------------------------------------- \n");
-                Console.WriteLine("Customer Updated");
-                Console.WriteLine();
+                if (repository.UpdateCustomer(customer))
+                {
+                    Console.WriteLine(" -------------------- A Customer has been Updated -------------------------------------- \n");
+                    Console.WriteLine("Customer Updated");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine("Failed");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("Failed");
+                Console.WriteLine(ex.Message);
             }
 
         }
         public static void ReadCustomersByCountry(ICustomerRepository repository)
         {
-            List<CustomerCountry> numbers = repository.GetCustomersByCountry();
-            Console.WriteLine(" -------------------- Customers Order By Country from High To Low ---------------------------- \n");
-            foreach (CustomerCountry customerObj in numbers)
+            try
             {
-                var order = string.Format("|{0,5} |{1,5} | ", customerObj.CountryName, customerObj.CustomerId);
-                Console.WriteLine(order);
+                List<CustomerCountry> numbers = repository.GetCustomersByCountry();
+                Console.WriteLine(" -------------------- Customers Order By Country from High To Low ---------------------------- \n");
+                foreach (CustomerCountry customerObj in numbers)
+                {
+                    var order = string.Format("|{0,5} |{1,5} | ", customerObj.CountryName, customerObj.CustomerId);
+                    Console.WriteLine(order);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
             public static void PrintCustomer(ICollection customers)

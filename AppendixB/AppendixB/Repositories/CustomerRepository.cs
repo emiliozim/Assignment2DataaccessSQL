@@ -15,8 +15,7 @@ namespace AppendixB.Repositories
         {
             List<Customer> custList = new List<Customer>();
             string sql = "SELECT CustomerId, FirstName,LastName, Country,PostalCode,Phone,Email FROM Customer";
-            try
-            {
+           
                 using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
                 {
                     conn.Open();
@@ -39,11 +38,6 @@ namespace AppendixB.Repositories
                         }
                     }
                 }
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine(e);
-            }
             return custList;
 
         }
@@ -52,8 +46,7 @@ namespace AppendixB.Repositories
             Customer temp = new Customer();
           
             string sql = $"SELECT CustomerId, FirstName,LastName, Country,PostalCode,Phone,Email FROM Customer WHERE CustomerId = {id}";
-            try
-            {
+           
              
                 using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
                 {
@@ -80,11 +73,6 @@ namespace AppendixB.Repositories
                         }
                     }
                 }
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine(e);
-            }
             return temp;
         }
 
@@ -94,9 +82,7 @@ namespace AppendixB.Repositories
             List<Customer> custList = new List<Customer>();
 
             string sql = $"SELECT CustomerId, FirstName,LastName, Country,PostalCode,Phone,Email FROM Customer WHERE FirstName LIKE '{name}'";
-            try
-            {
-               
+
                 using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
                 {
                     conn.Open();
@@ -122,12 +108,6 @@ namespace AppendixB.Repositories
                         }
                     }
                 }
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine(e);
-
-            }
             return custList;
         }
         public List<Customer> GetAllCustomersWithLimitAndOffset(int  limit, int offset)
@@ -135,10 +115,6 @@ namespace AppendixB.Repositories
             List<Customer> custtList = new List<Customer>();
       
             string sql = $"SELECT CustomerId,FirstName,LastName,Country,PostalCode,Phone,Email FROM Customer ORDER BY CustomerId OFFSET { offset} ROWS FETCH NEXT { limit}  ROWS ONLY";
-
-            try
-            {
-         
                 using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
                 {
                     conn.Open();
@@ -167,11 +143,6 @@ namespace AppendixB.Repositories
                         }
                     }
                 }
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine(e);
-            }
             return custtList;
         }
 
@@ -181,8 +152,6 @@ namespace AppendixB.Repositories
             
             string sql = "INSERT INTO Customer(FirstName,LastName,Country,PostalCode,Phone,Email) " + "VALUES(@FirstName,@LastName,@Country,@PostalCode,@Phone,@Email)";
 
-            try
-            {
                 using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
                 {
                     conn.Open();
@@ -197,11 +166,6 @@ namespace AppendixB.Repositories
                         success = cmd.ExecuteNonQuery() > 0 ? true : false;
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
             return success;
         }
 
@@ -211,8 +175,6 @@ namespace AppendixB.Repositories
          
             string sql = "UPDATE Customer SET FirstName = @FirstName, LastName = @LastName, Country = @Country, PostalCode = @PostalCode,Phone = @Phone,Email = @Email WHERE CustomerId = @CustomerId";
 
-            try
-            {
                 using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
                 {
                     conn.Open();
@@ -228,11 +190,7 @@ namespace AppendixB.Repositories
                         success = cmd.ExecuteNonQuery() > 0 ? true : false;
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+
             return success;
         }
         public List<CustomerCountry> GetCustomersByCountry()
@@ -241,9 +199,7 @@ namespace AppendixB.Repositories
             List<CustomerCountry> custList = new List<CustomerCountry>();
 
             string sql = "SELECT COUNT(Country), Country FROM Customer GROUP BY Country ORDER BY COUNT(Country) DESC";
-            try
-            {
-              
+
                 using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
                 {
                     conn.Open();
@@ -264,11 +220,6 @@ namespace AppendixB.Repositories
                         }
                     }
                 }
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine(e);
-            }
             return custList;
         }
 
