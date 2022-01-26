@@ -9,7 +9,7 @@ namespace AppendixB.Repository
 {
     internal interface ICustomerRepository
     {
-        IEnumerable<ICustomerRepository> GetCustomers();
+        IEnumerable<Customer> GetCustomers();
         Customer GetCustomerById(int customerId);
         bool InsertCustomer (Customer customer);    
         bool UpdateCustomer (Customer customer);
