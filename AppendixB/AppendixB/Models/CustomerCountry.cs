@@ -12,6 +12,6 @@ namespace AppendixB.Models
     public class CustomerCountry
     {
         public string CountryName { get; set; }
-       public int CustomerId { get; set; }
+       public int Quantity { get; set; }
     }
 }

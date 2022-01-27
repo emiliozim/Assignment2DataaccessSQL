@@ -203,11 +203,7 @@ namespace AppendixB.Repositories
            
             List<CustomerCountry> custList = new List<CustomerCountry>();
 
-            string sql = "SELECT COUNT(CustomerId) AS TotalNumber," +
-                " Country" +
-                " FROM Customer" +
-                " GROUP BY Country" +
-                " ORDER BY TotalNumber DESC";
+            string sql = "SELECT Customer.Country AS Country, COUNT(*) AS Quantity FROM Customer GROUP BY Customer.Country ORDER BY COUNT(*) DESC";
 
                 using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
                 {
@@ -221,10 +217,11 @@ namespace AppendixB.Repositories
 
                             while (reader.Read())
                             {
-                                CustomerCountry customerCountryObj = new CustomerCountry();
-                                customerCountryObj.CustomerId = reader.GetInt32(0);
-                                customerCountryObj.CountryName = reader.GetString(1);
-                                custList.Add(customerCountryObj);
+                                CustomerCountry customerCountry = new CustomerCountry();
+                                customerCountry.CountryName = reader.GetString(0);
+                                customerCountry.Quantity = reader.GetInt32(1);
+                               
+                                custList.Add(customerCountry);
                             }
                         }
                     }

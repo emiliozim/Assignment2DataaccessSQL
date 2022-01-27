@@ -28,6 +28,7 @@ namespace AppendixB
         {
             try
             {
+
                 Console.WriteLine(" ---------------------- Display All Customers ------------------------------------------- \n");
                 PrintCustomer(repository.GetAllCustomers());
                 Console.WriteLine(" ------------------------------------------------------------------------------------------\n");
@@ -93,6 +94,7 @@ namespace AppendixB
                 {
                     Console.WriteLine(" -------------------- New Customer Added --------------------------------------------- \n");
                     Console.WriteLine("Success");
+              
                     Console.WriteLine();
                 }
                 else
@@ -146,7 +148,7 @@ namespace AppendixB
                 Console.WriteLine(" -------------------- Customers Order By Country from High To Low ---------------------------- \n");
                 foreach (CustomerCountry customerObj in numbers)
                 {
-                    var order = string.Format("|{0,5} |{1,5} | ", customerObj.CountryName, customerObj.CustomerId);
+                    var order = string.Format("|{0,5} |{1,5} | ", customerObj.CountryName, customerObj.Quantity);
                     Console.WriteLine(order);
                 }
             }catch (Exception ex) 

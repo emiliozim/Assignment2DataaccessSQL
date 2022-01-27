@@ -19,7 +19,7 @@ namespace AppendixB.Connection
         public static string GetConnectionString()
         {
             SqlConnectionStringBuilder Builder = new SqlConnectionStringBuilder();
-            Builder.DataSource = "DESKTOP-C6KBH7L\\SQLEXPRESS";
+            Builder.DataSource = "N-SE-01-1694\\SQLEXPRESS";
 
             Builder.InitialCatalog = "Chinook";
             Builder.IntegratedSecurity = true;
