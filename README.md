@@ -1,50 +1,52 @@
-# RPG Characters
+# Dataaccess SQL
 A console application written in C#. 
 ## Table of Contents
-- [Description](#Description)
+- [Description Appendex A ](#Description Appendex A)
+- [Installation Appendex A ](#Installation Appendex A)
+- [Description Appendex B](#Description Appendex B)
 - [Installation](#Installation)
 - [Components](#Components)
-- [Usage](#Usage)
 - [Maintainer](#Maintainer)
 - [Author](#Author)
 - [License](#License)
-## Description
-This project has various character classes having attributes which increase at different rates as the character gains levels.
-Equipment, such as armor and weapons, that characters can equip. The equipped items will alter the power of the character,
-causing it to deal more damage. Certain characters can equip certain item types.
-No program.cs is implemeted.
+## Description Appendex A
+Contains 9 queries
+- Create database
+- Create tables
+- Relationships superhero and assistant
+- Relationships superhero and power
+- Insert superhero
+- Insert assistent
+- Powers
+- Update superhero
+- Delete assistent
+- 
+## Installation Appendex A
+Run it in SSMS
+The execute the scripts
+
+## Description Appendex B
+A console app that connects to a database and
+can run CRUD functions and some custom functions to the database.
 
 ## Installation
+Download the Chinook db.
+Run ssms
+change the builder.DataSource to the name of your database.
 Run it in Visual Studios, then press the play button.
 
 
 ## Components
-Two custom exceptions.
-A Characer class that extendes four character classes (Mage, Warrior, Rouge and Rangers). 
-A Item class that extendes two item classes (Armor and Weapon)
-Tests for characters attributes and leveling system.
-Tests for item system.
+Two Repositorys (ICustomerRepository and CustomerRepository) .
+Four Customer classes
+A Database connectin class called DbConnect.
 Summary tags for all classes and methods.
 
-## Usage
 
-The Character class ToString method is overwritten to show the characters stats.
-```C#
-# returns 'Characters stats'
-public override string ToString()
-
-```
-To use it:
-
-```C#
-Warrior warrior = new("Warrior");
-Console.WriteLine(warrior);
-
-```
 ## Maintainer
-[@emiliozimberlin](https://gitlab.com/emiliozimberlin)
+[@emiliozim](https://github.com/emiliozim) [@Jaber-Ali](https://github.com/Jaber-Ali)
 
 ## Author
-Emilio Zimberlin
+Emilio Zimberlin and Jaber Ail
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
