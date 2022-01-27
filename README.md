@@ -1,9 +1,9 @@
 # Dataaccess SQL
 A console application written in C#. 
 ## Table of Contents
-- [DescriptionAppendexA](#DescriptionAppendexA)
-- [InstallationAppendexA](#InstallationAppendexA)
-- [DescriptionAppendexB](#DescriptionAppendexB)
+- [Description Appendex A](#DescriptionAppendexA)
+- [Installation Appendex A](#InstallationAppendexA)
+- [Description Appendex B](#DescriptionAppendexB)
 - [Installation](#Installation)
 - [Components](#Components)
 - [Maintainer](#Maintainer)
@@ -21,11 +21,11 @@ Contains 9 queries
 - Update superhero
 - Delete assistent
 - 
-## InstallationAppendexA
+## Installation Appendex A
 Run it in SSMS
 The execute the scripts
 
-## DescriptionAppendexB
+## Description Appendex B
 A console app that connects to a database and
 can run CRUD functions and some custom functions to the database.
 
