@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AppendixB.Models
 {
+    /// <summary>
+    /// CustomerSpender class.
+    /// </summary>
     public class CustomerSpender
     {
         public decimal TotalSpender { get; set; }
@@ -15,3 +18,4 @@ namespace AppendixB.Models
 
     }
 }
+ 

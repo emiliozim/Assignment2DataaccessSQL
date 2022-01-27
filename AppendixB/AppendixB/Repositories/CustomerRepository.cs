@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace AppendixB.Repositories
 {
+    /// <inheritdoc />
     public class CustomerRepository : ICustomerRepository   
     {
+        /// <inheritdoc/>
         public List<Customer> GetAllCustomers()
         {
             List<Customer> custList = new List<Customer>();
@@ -41,6 +43,7 @@ namespace AppendixB.Repositories
             return custList;
 
         }
+        /// <inheritdoc/>
         public Customer GetCustomerById(int id)
         {
             Customer temp = new Customer();
@@ -76,7 +79,7 @@ namespace AppendixB.Repositories
             return temp;
         }
 
-
+        /// <inheritdoc/>
         public List<Customer> GetCustomerByName(string name)
         {
             List<Customer> custList = new List<Customer>();
@@ -110,6 +113,7 @@ namespace AppendixB.Repositories
                 }
             return custList;
         }
+        /// <inheritdoc/>
         public List<Customer> GetAllCustomersWithLimitAndOffset(int  limit, int offset)
         {
             List<Customer> custtList = new List<Customer>();
@@ -145,7 +149,7 @@ namespace AppendixB.Repositories
                 }
             return custtList;
         }
-
+        /// <inheritdoc/>
         public bool CreateNewCustomer(Customer customer)
         {
             bool success = false;
@@ -168,7 +172,7 @@ namespace AppendixB.Repositories
                 }
             return success;
         }
-
+        /// <inheritdoc/>
         public bool UpdateCustomer(Customer customer)
         {
             bool success = false;
@@ -193,6 +197,7 @@ namespace AppendixB.Repositories
 
             return success;
         }
+        /// <inheritdoc/>
         public List<CustomerCountry> GetCustomersByCountry()
         {
            
@@ -226,7 +231,8 @@ namespace AppendixB.Repositories
                 }
             return custList;
         }
-        public List<CustomerSpender> GetCustomersBySpenders()
+        /// <inheritdoc/>
+        public List<CustomerSpender> GetCustomersByHighestSpenders()
         {
 
             List<CustomerSpender> custList = new List<CustomerSpender>();
@@ -267,6 +273,52 @@ namespace AppendixB.Repositories
                 Console.WriteLine(ex.Message);
             }
             return custList;
+        }
+        /// <inheritdoc/>
+        public CustomerGenre GetMostPopularGenreByCustomerId(int id)
+        {
+            CustomerGenre temp = new CustomerGenre();
+
+            string sql = $"SELECT TOP 1 WITH TIES " +
+                $"c.FirstName, " +
+                $"c.LastName," +
+                $"g.Name AS Genre," +
+                $"COUNT(g.GenreId) AS Total " +
+                $"FROM Customer c " +
+                $"JOIN Invoice i ON C.CustomerId = i.CustomerId " +
+                $"JOIN InvoiceLine il ON i.InvoiceId = il.InvoiceId " +
+                $"JOIN Track t ON il.TrackId = t.TrackId " +
+                $"JOIN Genre g ON t.GenreId = g.GenreId " +
+                $"WHERE c.CustomerId = {id} " +
+                $"GROUP BY c.FirstName, " +
+                $"c.LastName, " +
+                $"g.Name " +
+                $"ORDER BY COUNT(g.GenreId) DESC";
+
+
+            using (SqlConnection conn = new SqlConnection(DbConnection.GetConnectionString()))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("CustomerId", id);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+
+                            temp.FirstName = reader.GetString(0);
+                            temp.LastName = reader.GetString(1);
+                            temp.GenreName = reader.GetString(2);
+                            
+                        }
+                    }
+                }
+            }
+            return temp;
         }
 
     }
