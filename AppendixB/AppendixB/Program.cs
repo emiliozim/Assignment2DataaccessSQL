@@ -24,6 +24,10 @@ namespace AppendixB
 
 
         }
+        /// <summary>
+        /// Reads all customers from Chinook Database
+        /// </summary>
+        /// <param name="repository">ICustomerRepository interface obj</param>
         public static void ReadAllCustomers(ICustomerRepository repository)
         {
             try
@@ -33,24 +37,33 @@ namespace AppendixB
                 PrintCustomer(repository.GetAllCustomers());
                 Console.WriteLine(" ------------------------------------------------------------------------------------------\n");
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-          
+
         }
+        /// <summary>
+        /// Reads A specific Customer by CustomerID from customer tabel
+        /// </summary>
+        /// <param name="repository">ICustomerRepository interface obj</param>
         public static void SpecificCustomerById(ICustomerRepository repository)
         {
-            try { 
+            try
+            {
                 Console.WriteLine(" ---------------------- Read Specific Customer by ID ------------------------------------- \n");
                 PrintCustomer(repository.GetCustomerById(2));
                 Console.WriteLine();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-}
+        }
+        /// <summary>
+        ///  Reads A specific Customer by Name(firstName)
+        /// </summary>
+        /// <param name="repository">ICustomerRepository interface obj</param>
         public static void SpecificCustomerByName(ICustomerRepository repository)
         {
             try
@@ -64,6 +77,10 @@ namespace AppendixB
                 Console.WriteLine(ex.Message);
             }
         }
+        /// <summary>
+        /// Reads customer limit and offset
+        /// </summary>
+        /// <param name="repository">ICustomerRepository interface obj</param>
         static void ReadLimitAndOffset(ICustomerRepository repository)
         {
             try
@@ -77,6 +94,10 @@ namespace AppendixB
                 Console.WriteLine(ex.Message);
             }
         }
+        /// <summary>
+        /// Adds a New customer into the database
+        /// </summary>
+        /// <param name="repository">ICustomerRepository interface obj</param>
         public static void AddNewCustomer(ICustomerRepository repository)
         {
             Customer customer = new Customer()
@@ -94,7 +115,7 @@ namespace AppendixB
                 {
                     Console.WriteLine(" -------------------- New Customer Added --------------------------------------------- \n");
                     Console.WriteLine("Success");
-              
+
                     Console.WriteLine();
                 }
                 else
@@ -108,9 +129,13 @@ namespace AppendixB
             }
 
         }
+        /// <summary>
+        /// Updates a customer
+        /// </summary>
+        /// <param name="repository">ICustomerRepository interface obj</param>
         public static void UpdateCustomer(ICustomerRepository repository)
         {
-           
+
             Customer customer = new Customer()
             {
                 CustomerId = 63,
@@ -140,6 +165,10 @@ namespace AppendixB
             }
 
         }
+        /// <summary>
+        /// Reads the amount of customers in countries and orders them from high to low
+        /// </summary>
+        /// <param name="repository">ICustomerRepository interface obj</param>
         public static void ReadCustomersByCountry(ICustomerRepository repository)
         {
             try
@@ -151,11 +180,16 @@ namespace AppendixB
                     var order = string.Format("|{0,5} |{1,5} | ", customerObj.CountryName, customerObj.Quantity);
                     Console.WriteLine(order);
                 }
-            }catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
         }
+        /// <summary>
+        /// Reads customers total spender from high to low
+        /// </summary>
+        /// <param name="repository">ICustomerRepository interface obj</param>
         public static void ReadCustomersByInvoice(ICustomerRepository repository)
         {
             try
@@ -173,6 +207,10 @@ namespace AppendixB
                 Console.WriteLine(ex.Message);
             }
         }
+        /// <summary>
+        /// Reads a specific customer by customerId and their most popular genre.
+        /// </summary>
+        /// <param name="repository">ICustomerRepository interface obj</param>
         public static void SpecificGenereById(ICustomerRepository repository)
         {
             try
@@ -186,7 +224,11 @@ namespace AppendixB
                 Console.WriteLine(ex.Message);
             }
         }
-            public static void PrintCustomer(ICollection customers)
+        /// <summary>
+        /// Printer Format
+        /// </summary>
+        /// <param name="customers">customers obj</param>
+        public static void PrintCustomer(ICollection customers)
         {
 
             foreach (Customer customer in customers)
@@ -194,8 +236,12 @@ namespace AppendixB
                 PrintCustomer(customer);
 
             }
-          
+
         }
+        /// <summary>
+        /// Printer Format
+        /// </summary>
+        /// <param name="customers">customers obj</param>
 
         public static void PrintCustomerLimitAndOffset(ICollection customers)
         {
@@ -207,11 +253,15 @@ namespace AppendixB
             }
 
         }
+        /// <summary>
+        /// Printer Format
+        /// </summary>
+        /// <param name="customer">customers obj</param>
         public static void PrintCustomer(Customer customer)
         {
             var print = string.Format("|{0,5} | {1,5} | {2,5} | {3,5} | {4,5} | {5,5} | {6,5} |", customer.CustomerId, customer.FirstName, customer.LastName, customer.Country, customer.PostalCode, customer.Phone, customer.Email);
             Console.WriteLine(print);
         }
-  
+
     }
 }
