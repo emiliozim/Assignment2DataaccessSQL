@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Data.SqlClient;
+using System;
+
 
 namespace AppendixB.Connection
 {
@@ -19,7 +16,7 @@ namespace AppendixB.Connection
         public static string GetConnectionString()
         {
             SqlConnectionStringBuilder Builder = new SqlConnectionStringBuilder();
-            Builder.DataSource = "N-SE-01-1694\\SQLEXPRESS";
+            Builder.DataSource = "DESKTOP-C6KBH7L\\SQLEXPRESS";
 
             Builder.InitialCatalog = "Chinook";
             Builder.IntegratedSecurity = true;
