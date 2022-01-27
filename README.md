@@ -1,9 +1,9 @@
 # Dataaccess SQL
 A console application written in C#. 
 ## Table of Contents
-- [DescriptionAppendex A ](#Description Appendex A)
-- [InstallationAppendex A ](#Installation Appendex A)
-- [DescriptionAppendex B](#Description Appendex B)
+- [DescriptionAppendexA](#Description Appendex A)
+- [InstallationAppendexA](#Installation Appendex A)
+- [DescriptionAppendexB](#Description Appendex B)
 - [Installation](#Installation)
 - [Components](#Components)
 - [Maintainer](#Maintainer)
