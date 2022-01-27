@@ -22,8 +22,7 @@ Contains 9 queries and a Diagram
 - Delete assistent
 - Diagram database
 ## Installation Appendex A
-Run it in SSMS
-The execute the scripts
+Run it in SSMS, then execute the scripts.
 
 ## Description Appendex B
 A console app that connects to a database and
