@@ -10,7 +10,7 @@ A console application written in C#.
 - [Author](#Author)
 - [License](#License)
 ## Description Appendex A
-Contains 9 queries
+Contains 9 queries and a Diagram
 - Create database
 - Create tables
 - Relationships superhero and assistant
@@ -20,7 +20,7 @@ Contains 9 queries
 - Powers
 - Update superhero
 - Delete assistent
-- 
+- Diagram database
 ## Installation Appendex A
 Run it in SSMS
 The execute the scripts
