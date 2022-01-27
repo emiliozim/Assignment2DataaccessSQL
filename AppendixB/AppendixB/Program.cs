@@ -18,6 +18,11 @@ namespace AppendixB
             AddNewCustomer(repository);
             UpdateCustomer(repository);
             ReadCustomersByCountry(repository);
+            ReadCustomersByInvoice(repository);
+            SpecificGenereById(repository);
+
+
+
         }
         public static void ReadAllCustomers(ICustomerRepository repository)
         {
@@ -144,6 +149,35 @@ namespace AppendixB
                     var order = string.Format("|{0,5} |{1,5} | ", customerObj.CountryName, customerObj.CustomerId);
                     Console.WriteLine(order);
                 }
+            }catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public static void ReadCustomersByInvoice(ICustomerRepository repository)
+        {
+            try
+            {
+                List<CustomerSpender> numbers = repository.GetCustomersByHighestSpenders();
+                Console.WriteLine(" -------------------- Customers Order By Biggest Spender from High To Low ---------------------------- \n");
+                foreach (CustomerSpender customerObj in numbers)
+                {
+                    var order = string.Format("|{0,5} |{1,5} |{2,5} | ", customerObj.TotalSpender, customerObj.FirstName, customerObj.LastName);
+                    Console.WriteLine(order);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public static void SpecificGenereById(ICustomerRepository repository)
+        {
+            try
+            {
+                Console.WriteLine(" ---------------------- Read Specific Customer most popular genre ------------------------------------- \n");
+                var order = string.Format("|{0,5} |{1,5} |{2,5} | ", repository.GetMostPopularGenreByCustomerId(2).FirstName, repository.GetMostPopularGenreByCustomerId(2).LastName, repository.GetMostPopularGenreByCustomerId(2).GenreName);
+                Console.WriteLine(order);
             }
             catch (Exception ex)
             {

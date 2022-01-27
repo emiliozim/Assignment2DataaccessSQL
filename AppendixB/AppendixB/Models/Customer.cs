@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AppendixB.Models
 {
+    /// <summary>
+    /// Customer class.
+    /// </summary>
     public class Customer
     {
         public int CustomerId { get; set; }
